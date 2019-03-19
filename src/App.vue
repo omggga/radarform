@@ -1,14 +1,14 @@
 <template>
 	<div class="full-width center-content">
-		<hello-component name="World" />
+		<form-component />
 	</div>
 </template>
 
 <script>
-import HelloComponent from './components/HelloComponent.vue'
+import FormComponent from './components/FormComponent.vue'
 export default {
 	components: {
-		HelloComponent
+		FormComponent
 	}
 }
 </script>
