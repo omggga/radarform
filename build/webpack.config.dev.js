@@ -48,8 +48,7 @@ module.exports = {
 			{
 				test: /\.js$/,
 				include: [
-					path.resolve(__dirname, 'src'),
-					require.resolve('bootstrap-vue')
+					path.resolve(__dirname, 'src')
 				],
 				use: 'babel-loader'
 			},
@@ -57,6 +56,18 @@ module.exports = {
 				test: /\.(js|vue)$/,
 				use: 'eslint-loader',
 				enforce: 'pre'
+			},
+			{
+				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+				loader: 'url-loader'
+			},
+			{
+				test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+				loader: 'url-loader'
+			},
+			{
+			test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+				loader: 'url-loader'
 			}
 		]
 	},

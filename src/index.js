@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
+import VueMaterial from 'vue-material'
 import App from './App.vue'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
 import '../assets/app.styl'
 
-Vue.use(BootstrapVue)
+Vue.use(VueMaterial)
 
 new Vue({
 	el: '#app',
