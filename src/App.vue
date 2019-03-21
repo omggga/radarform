@@ -1,7 +1,6 @@
-<template>
-	<div class="full-width center-content">
+<template lang="pug">
+	.full-width.center-content
 		<form-component />
-	</div>
 </template>
 
 <script>

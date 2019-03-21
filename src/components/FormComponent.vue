@@ -1,25 +1,16 @@
 <template lang="pug">
-	.form_block
+	.form_block.md-elevation-7
 		.form_block__wrapper
 			.form_block__header
-				h1 Найдите свое следующее путешествие
-
-			.md-content
-				.md-layout.md-gutter
-					.md-layout-item
-						md-field
-							label(for="fromCountry") Откуда
-							md-select(v-model="selectedMovies", name="fromCountry", id="fromCountry", multiple)
-								md-option(value="MOW") Москва
-								md-option(value="SPB") Санкт-Петербург
-								md-option(value="5454") Чукота
+				span.md-display-1 Найдите свое следующее путешествие
+			form-layout
 </template>
 
 <script>
+import FormLayout from './form/FormLayout.vue'
 export default {
-	name: 'MultipleSelect',
-	data: () => ({
-		selectedMovies: []
-	})
+	components: {
+		FormLayout
+	}
 }
 </script>
