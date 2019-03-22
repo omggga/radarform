@@ -1,5 +1,5 @@
 <template lang="pug">
-	.md-content
+	.md-content.form_layout--block
 		.md-layout.md-gutter
 			field-from
 			field-to

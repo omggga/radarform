@@ -2,9 +2,11 @@
 	.form_block.md-elevation-7
 		.form_block__wrapper
 			.form_block__header
-				.md-layout
-					img(src="/static/images/logo.jpg", alt="Travel Radar")
-				span.md-display-1 Найдите свое следующее путешествие
+				.md-layout.md-gutter.md-alignment-center-center
+					.md-layout-item.md-size-25
+						img(src="static/images/logo.jpg", alt="Travel Radar")
+					.md-layout-item.md-size-75
+						span.md-headline Найди свое путешествие!
 			form-layout
 </template>
 
