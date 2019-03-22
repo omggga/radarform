@@ -1,14 +1,14 @@
 <template lang="pug">
 	.md-content
 		.md-layout.md-gutter
-			<field-from />
-			<field-to />
+			field-from
+			field-to
 		.md-layout.md-gutter
-			<field-dates />
+			field-dates
 		.md-layout.md-gutter
-			<field-visa />
+			field-visa
 		.md-layout.md-gutter
-			<form-buttons />
+			form-buttons
 </template>
 
 <script>

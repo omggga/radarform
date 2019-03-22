@@ -4,9 +4,9 @@
 			label(for="toCountry") Откуда
 			md-select(v-model="toCountry", name="toCountry", id="toCountry", multiple, md-dense)
 				md-option(value="all") Весь мир
-				md-option(value="MOW") Москва
-				md-option(value="SPB") Санкт-Петербург
+				md-option(value="MOW") Европа
 				md-option(value="5454") Азия
+				md-option(value="5454") Транзитом через Урумчи
 </template>
 
 <script>

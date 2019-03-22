@@ -76,17 +76,14 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: 'main.css'
 		}),
+		new CopyWebpackPlugin([
+			{ from: resolve('static'),	to: resolve('dist/static') }
+		]),
 		new VueLoaderPlugin(),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			template: 'index.html',
 			inject: true
-		}),
-		new CopyWebpackPlugin([{
-			from: resolve('static/'),
-			to: resolve('dist/static/'),
-			toType: 'dir'
-		}])
-		
+		})
 	]
 }
