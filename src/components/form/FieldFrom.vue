@@ -7,6 +7,10 @@
 						v-icon(:color="selectedCities.length > 0 ? '#01CAD1' : ''") {{ icon }}
 					v-list-tile-content
 						v-list-tile-title Везде
+			template(v-slot:selection="{ item, index }")
+				span(v-if="index === 0") {{ item }}
+				span(v-if="index === 1") &nbsp;, {{ item }}
+				span(v-if="index === 2") &nbsp;(+{{ selectedCities.length - 2 }})
 </template>
 
 <script>
@@ -31,15 +35,6 @@ export default {
 		}
 	},
 
-	watch: {
-		change (val) {
-			console.log(val)
-			setTimeout(() => {
-				this.$refs.select.menuIsActive = false
-			}, 50)
-		}
-	},
-
 	methods: {
 		toggle () {
 			this.$nextTick(() => {
@@ -47,6 +42,7 @@ export default {
 					this.selectedCities = []
 				} else {
 					this.selectedCities = this.cities.slice()
+					this.$children[0].blur()
 				}
 			})
 		}

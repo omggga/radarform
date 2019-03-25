@@ -7,6 +7,10 @@
 						v-icon(:color="selectedVisas.length > 0 ? '#01CAD1' : ''") {{ icon }}
 					v-list-tile-content
 						v-list-tile-title Мне все равно
+			template(v-slot:selection="{ item, index }")
+				span(v-if="index === 0") {{ item }}
+				span(v-if="index === 1") &nbsp;, {{ item }}
+				span(v-if="index === 2") &nbsp;(+{{ selectedVisas.length - 2 }})
 </template>
 
 <script>
@@ -37,6 +41,7 @@ export default {
 					this.selectedVisas = []
 				} else {
 					this.selectedVisas = this.visa.slice()
+					this.$children[0].blur()
 				}
 			})
 		}
