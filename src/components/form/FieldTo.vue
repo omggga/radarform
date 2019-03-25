@@ -6,7 +6,7 @@
 					v-list-tile-action
 						v-icon(:color="selectedCountries.length > 0 ? '#01CAD1' : ''") {{ icon }}
 					v-list-tile-content
-						v-list-tile-title Весь мир
+						v-list-tile-title Куда угодно
 </template>
 
 <script>

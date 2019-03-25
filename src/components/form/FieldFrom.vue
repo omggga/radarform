@@ -1,6 +1,6 @@
 <template lang="pug">
 	v-layout.select_from(justify-center)
-		v-select(v-model="selectedCities", :items="cities", label="Откуда", multiple, attach, color="#01CAD1")
+		v-select(v-model="selectedCities", :items="cities", label="Любой город", multiple, attach, color="#01CAD1")
 			template(v-slot:prepend-item)
 				v-list-tile(dense, @click="toggle")
 					v-list-tile-action

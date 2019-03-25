@@ -1,8 +1,9 @@
 <template lang="pug">
-	v-layout.pt-3.pb-3(wrap)
-		v-flex(xs12)
-			img(src="static/images/logo.jpg", alt="Travel Radar", width="70", height="70", style="vertical-align: middle")
-			span.headline.pl-2 Найди свое путешествие!
+	v-layout.pt-1.pb-1(wrap, justify-start)
+		v-flex(xs1)
+			img(src="static/images/logo.jpg", alt="Travel Radar", width="70", height="70")
+		v-flex.pt-4(xs11)
+			span.headline.pl-2 Лети отсюда!
 		v-flex(xs12)
 			form-layout
 </template>

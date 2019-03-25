@@ -1,7 +1,8 @@
 <template lang="pug">
-	v-container(fluid, text-xs-center, grid-list-md )
-		v-card(min-width="375")
-			form-component
+	v-app
+		v-container(fluid, text-xs-center, grid-list-md )
+			v-card(min-width="375")
+				form-component
 </template>
 
 <script>

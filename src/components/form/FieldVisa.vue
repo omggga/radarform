@@ -6,16 +6,16 @@
 					v-list-tile-action
 						v-icon(:color="selectedVisas.length > 0 ? '#01CAD1' : ''") {{ icon }}
 					v-list-tile-content
-						v-list-tile-title Все равно
+						v-list-tile-title Мне все равно
 </template>
 
 <script>
 export default {
 	data: () => ({
 		visa: [
-			'Без визы',
+			'Без визы, пожалуйста',
 			'Есть шенген',
-			'Есть виза США'
+			'Есть визы UK/USA'
 		],
 		selectedVisas: []
 	}),
