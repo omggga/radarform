@@ -72,11 +72,11 @@ module.exports = {
 		]
 	},
 	plugins: [
+		new VueLoaderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new CopyWebpackPlugin([
 			{ from: resolve('static'),	to: resolve('dist/static') }
 		]),
-		new VueLoaderPlugin(),
 		new MiniCssExtractPlugin({
 			filename: 'main.css'
 		}),

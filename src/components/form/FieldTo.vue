@@ -1,10 +1,10 @@
 <template lang="pug">
 	v-layout.select_from(justify-center)
-		v-select(v-model="selectedCountries", :items="countries", label="Куда", multiple, attach, color="blue")
+		v-select(v-model="selectedCountries", :items="countries", label="Куда", multiple, attach, color="#01CAD1")
 			template(v-slot:prepend-item)
 				v-list-tile(ripple, @click="toggle")
 					v-list-tile-action
-						v-icon(:color="selectedCountries.length > 0 ? 'blue darken-2' : ''") {{ icon }}
+						v-icon(:color="selectedCountries.length > 0 ? '#01CAD1' : ''") {{ icon }}
 					v-list-tile-content
 						v-list-tile-title Весь мир
 </template>

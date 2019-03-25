@@ -1,11 +1,5 @@
 <template lang="pug">
-	.md-layout-item
-		md-button.md-raised.md-primary Сохранить
-		md-button.md-raised.md-accent Сбросить
+	div
+		v-btn(color="success") Сохранить
+		v-btn(color="info") Очистить форму
 </template>
-
-<script>
-export default {
-	name: 'RegularButtons'
-}
-</script>

@@ -1,10 +1,10 @@
 <template lang="pug">
 	v-layout.select_from(justify-center)
-		v-select(v-model="selectedCities", :items="cities", label="Откуда", multiple, attach, color="blue")
+		v-select(v-model="selectedCities", :items="cities", label="Откуда", multiple, attach, color="#01CAD1")
 			template(v-slot:prepend-item)
 				v-list-tile(dense, @click="toggle")
 					v-list-tile-action
-						v-icon(:color="selectedCities.length > 0 ? 'blue darken-2' : ''") {{ icon }}
+						v-icon(:color="selectedCities.length > 0 ? '#01CAD1' : ''") {{ icon }}
 					v-list-tile-content
 						v-list-tile-title Везде
 </template>

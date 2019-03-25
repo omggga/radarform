@@ -1,19 +1,45 @@
 <template lang="pug">
-	.md-layout-item.md-medium-size-100.md-small-size-100.md-xsmall-size-100
-		md-field
-			label(for="visa") Виза
-			md-select(v-model="visa", name="visa", id="visa", multiple)
-				md-option(value="all") Все равно
-				md-option(value="need") Без визы
-				md-option(value="sheng") Есть шенген
-				md-option(value="usa") Есть виза США
+	v-layout.select_from(justify-center)
+		v-select(v-model="selectedVisas", :items="visa", label="Виза", multiple, attach, color="#01CAD1")
+			template(v-slot:prepend-item)
+				v-list-tile(ripple, @click="toggle")
+					v-list-tile-action
+						v-icon(:color="selectedVisas.length > 0 ? '#01CAD1' : ''") {{ icon }}
+					v-list-tile-content
+						v-list-tile-title Все равно
 </template>
 
 <script>
 export default {
-	name: 'OptgroupSelect',
 	data: () => ({
-		visa: [ 'all' ]
-	})
+		visa: [
+			'Без визы',
+			'Есть шенген',
+			'Есть виза США'
+		],
+		selectedVisas: []
+	}),
+
+	computed: {
+		allVisas () {
+			return this.selectedVisas.length === this.visa.length
+		},
+		icon () {
+			if (this.allVisas) return 'done'
+			return 'mdi-checkbox-blank-outline'
+		}
+	},
+
+	methods: {
+		toggle () {
+			this.$nextTick(() => {
+				if (this.allVisas) {
+					this.selectedVisas = []
+				} else {
+					this.selectedVisas = this.visa.slice()
+				}
+			})
+		}
+	}
 }
 </script>
