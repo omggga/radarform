@@ -1,6 +1,6 @@
 <template lang="pug">
 	v-layout.select_from(justify-center)
-		v-select(v-model="selectedCities", :items="cities", label="Любой город", multiple, attach, color="#01CAD1")
+		v-select(v-model="selectedCities", :items="cities", label="Любой город", multiple, attach, color="#01CAD1", dense)
 			template(v-slot:prepend-item)
 				v-list-tile(dense, @click="toggle")
 					v-list-tile-action
@@ -28,6 +28,15 @@ export default {
 		icon () {
 			if (this.allCities) return 'done'
 			return 'mdi-checkbox-blank-outline'
+		}
+	},
+
+	watch: {
+		change (val) {
+			console.log(val)
+			setTimeout(() => {
+				this.$refs.select.menuIsActive = false
+			}, 50)
 		}
 	},
 
