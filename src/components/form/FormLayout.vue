@@ -1,14 +1,10 @@
 <template lang="pug">
-	.md-content.form_layout--block
-		.md-layout.md-gutter
+	v-layout.pl-4.pr-4(row, wrap, justify-center)
+		v-flex(xs12, sm6)
 			field-from
+		v-flex(xs12, sm6, :class="{'pl-4': $vuetify.breakpoint.smAndUp, 'pl-0': $vuetify.breakpoint.xsOnly}")
 			field-to
-		.md-layout.md-gutter
-			field-dates
-		.md-layout.md-gutter
-			field-visa
-		.md-layout.md-gutter
-			form-buttons
+
 </template>
 
 <script>

@@ -31,21 +31,6 @@ module.exports = {
 				loader: 'pug-plain-loader'
 			},
 			{
-				test: /\.styl(us)?$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader',
-					'stylus-loader'
-				]
-			},
-			{
-				test: /\.css$/,
-				use: [
-					'vue-style-loader',
-					'css-loader'
-				]
-			},
-			{
 				test: /\.js$/,
 				include: [
 					path.resolve(__dirname, 'src')
@@ -56,6 +41,21 @@ module.exports = {
 				test: /\.(js|vue)$/,
 				use: 'eslint-loader',
 				enforce: 'pre'
+			},
+			{
+				test: /\.css$/,
+				use: [
+					'vue-style-loader',
+					'css-loader'
+				]
+			},
+			{
+				test: /\.styl(us)?$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					'stylus-loader'
+				]
 			},
 			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -73,13 +73,13 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new MiniCssExtractPlugin({
-			filename: 'main.css'
-		}),
 		new CopyWebpackPlugin([
 			{ from: resolve('static'),	to: resolve('dist/static') }
 		]),
 		new VueLoaderPlugin(),
+		new MiniCssExtractPlugin({
+			filename: 'main.css'
+		}),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			template: 'index.html',

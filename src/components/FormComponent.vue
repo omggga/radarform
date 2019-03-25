@@ -1,12 +1,9 @@
 <template lang="pug">
-	.form_block.md-elevation-7
-		.form_block__wrapper
-			.form_block__header
-				.md-layout.md-gutter.md-alignment-center-center
-					.md-layout-item.md-size-25
-						img(src="static/images/logo.jpg", alt="Travel Radar")
-					.md-layout-item.md-size-75
-						span.md-headline Найди свое путешествие!
+	v-layout.pt-3.pb-3(wrap, justify-center)
+		v-flex(xs12)
+			img(src="static/images/logo.jpg", alt="Travel Radar", width="70", height="70", style="vertical-align: middle")
+			span.headline.pl-2 Найди свое путешествие!
+		v-flex(xs12)
 			form-layout
 </template>
 

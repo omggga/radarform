@@ -1,6 +1,7 @@
 <template lang="pug">
-	.full-width.center-content
-		<form-component />
+	v-container(fluid, text-xs-center, grid-list-md )
+		v-card(min-width="375")
+			form-component
 </template>
 
 <script>
