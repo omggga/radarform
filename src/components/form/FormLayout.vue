@@ -1,58 +1,110 @@
 <template lang="pug">
-	v-layout.pl-4.pr-4(row, wrap, justify-center)
-		v-flex(xs12, sm6)
-			v-layout.select_from(justify-center)
-				v-select(v-model="selectedCities", :items="cities", label="Откуда отсюда?", multiple, attach, color="#01CAD1", dense, max-height="205")
-					template(v-slot:prepend-item)
-						v-list-tile(dense, @click="toggleCity")
-							v-list-tile-action
-								v-icon(:color="selectedCities.length > 0 ? '#01CAD1' : ''") {{ iconCity }}
-							v-list-tile-content
-								v-list-tile-title Везде
-					template(v-slot:selection="{ item, index }")
-						span(v-if="index === 0") {{ item }}
-						span(v-if="index === 1") &nbsp;, {{ item }}
-						span(v-if="index === 2") &nbsp;(+{{ selectedCities.length - 2 }})
-		v-flex(xs12, sm6, :class="{'pl-4': $vuetify.breakpoint.smAndUp, 'pl-0': $vuetify.breakpoint.xsOnly}")
-			v-layout.select_from(justify-center)
-				v-select(v-model="selectedCountries", :items="countries", label="А куда?", multiple, attach, color="#01CAD1", dense, , max-height="205")
-					template(v-slot:prepend-item)
-						v-list-tile(ripple, @click="toggleCountry")
-							v-list-tile-action
-								v-icon(:color="selectedCountries.length > 0 ? '#01CAD1' : ''") {{ iconCountry }}
-							v-list-tile-content
-								v-list-tile-title Куда угодно
-					template(v-slot:selection="{ item, index }")
-						span(v-if="index === 0") {{ item }}
-						span(v-if="index === 1") &nbsp;, {{ item }}
-						span(v-if="index === 2") &nbsp;(+{{ selectedCountries.length - 2 }})
-		v-flex(xs12)
-			v-layout(row, wrap, justify-center)
-				v-flex(justify-center, xs12)
-					v-date-picker(v-model="months", type="month", multiple, color="#01CAD1", locale="ru", no-title, min="2019-04", max="2020-12", full-width)
-		v-flex.pt-2(xs12)
-			v-layout.select_from(justify-center)
-				v-select(v-model="selectedVisas", :items="visa", label="А что с документами?", multiple, attach, color="#01CAD1", dense, , max-height="205")
-					template(v-slot:prepend-item)
-						v-list-tile(ripple, @click="toggleVisa")
-							v-list-tile-action
-								v-icon(:color="selectedVisas.length > 0 ? '#01CAD1' : ''") {{ iconVisa }}
-							v-list-tile-content
-								v-list-tile-title Мне все равно
-					template(v-slot:selection="{ item, index }")
-						span(v-if="index === 0") {{ item }}
-						span(v-if="index === 1") &nbsp;, {{ item }}
-						span(v-if="index === 2") &nbsp;(+{{ selectedVisas.length - 2 }})
-		v-flex.pt-2(xs12)
-			v-layout(row, wrap)
-				v-flex.xs9
-					v-slider(v-model="slider", color="#01CAD1", always-dirty, height="5", label="₽₽₽", min="0", max="50000", step="1000", type="number")
-				v-flex.xs3.pl-3.txt-for-price
-					v-text-field(v-model="slider", type="number")
-		v-flex.pt-2(xs12)
-			div.pb-3
-				v-btn(color="success") Сохранить
-				v-btn(color="info") Очистить форму
+	v-form(id="radarform", ref="form", v-model="valid", action="https://getform.io/f/fda93c20-c692-429d-b0c7-2ed4f0626867")
+		v-layout.pl-4.pr-4(row, wrap, justify-center)
+			v-flex(xs12, sm6)
+				v-layout.select_from(justify-center)
+					v-select(ref="selectedCities",
+						v-model="selectedCities",
+						:items="cities",
+						label="Откуда отсюда?",
+						multiple,
+						attach,
+						color="#01CAD1",
+						dense,
+						:menu-props="{maxHeight: 185}",
+						:rules="[(v) => !!v || 'Ну так откуда?']",
+						required)
+						template(v-slot:prepend-item)
+							v-list-tile(dense, @click="toggleCity")
+								v-list-tile-action
+									v-icon(:color="selectedCities.length > 0 ? '#01CAD1' : ''") {{ iconCity }}
+								v-list-tile-content
+									v-list-tile-title Везде
+						template(v-slot:selection="{ item, index }", v-ripple="{ color: '#01CAD1' }")
+							span(v-if="index === 0") {{ item }}
+							span(v-if="index === 1") &nbsp;, {{ item }}
+							span(v-if="index === 2") &nbsp;(+{{ selectedCities.length - 2 }})
+			v-flex(xs12, sm6, :class="{'pl-4': $vuetify.breakpoint.smAndUp, 'pl-0': $vuetify.breakpoint.xsOnly}")
+				v-layout.select_from(justify-center)
+					v-select(ref="selectedCountries",
+						v-model="selectedCountries",
+						:items="countries",
+						label="А куда?",
+						multiple,
+						attach,
+						color="#01CAD1",
+						dense,
+						:menu-props="{maxHeight: 185}",
+						:rules="[v => !!v || 'Как это никуда?!']",
+						required)
+						template(v-slot:prepend-item)
+							v-list-tile(ripple, @click="toggleCountry")
+								v-list-tile-action
+									v-icon(:color="selectedCountries.length > 0 ? '#01CAD1' : ''") {{ iconCountry }}
+								v-list-tile-content
+									v-list-tile-title Куда угодно
+						template(v-slot:selection="{ item, index }")
+							span(v-if="index === 0") {{ item }}
+							span(v-if="index === 1") &nbsp;, {{ item }}
+							span(v-if="index === 2") &nbsp;(+{{ selectedCountries.length - 2 }})
+			v-flex(xs12)
+				v-layout(row, wrap, justify-center)
+					v-flex(justify-center, xs12)
+						v-date-picker(v-model="months",
+							type="month",
+							multiple,
+							color="#01CAD1",
+							locale="ru",
+							no-title,
+							min="2019-04",
+							max="2020-12",
+							full-width,
+							:rules="[v => !!v || 'А когда?']",
+							required)
+			v-flex.pt-2(xs12)
+				v-layout.select_from(justify-center)
+					v-select(ref="selectedVisas",
+						v-model="selectedVisas",
+						:items="visa",
+						label="А что с документами?",
+						multiple,
+						attach,
+						color="#01CAD1",
+						dense,
+						:menu-props="{maxHeight: 185}")
+						template(v-slot:prepend-item)
+							v-list-tile(ripple, @click="toggleVisa")
+								v-list-tile-action
+									v-icon(:color="selectedVisas.length > 0 ? '#01CAD1' : ''") {{ iconVisa }}
+								v-list-tile-content
+									v-list-tile-title Мне все равно
+						template(v-slot:selection="{ item, index }")
+							span(v-if="index === 0") {{ item }}
+							span(v-if="index === 1") &nbsp;, {{ item }}
+							span(v-if="index === 2") &nbsp;(+{{ selectedVisas.length - 2 }})
+			v-flex.pt-2(xs12)
+				v-layout(row, wrap)
+					v-flex.xs9
+						v-slider(ref="slider",
+							v-model="slider",
+							color="#01CAD1",
+							always-dirty,
+							height="5",
+							label="₽₽₽",
+							min="0",
+							max="50000",
+							step="1000",
+							type="number",
+							:rules="[v => !!v || 'Ну хотя бы примерную цену...']",
+							required,
+							thumb-label,
+							thumb-size="38")
+					v-flex.xs3.pl-3.txt-for-price
+						v-text-field(ref="sliderNum", v-model="slider", type="number")
+			v-flex.pt-2(xs12)
+				div.pb-3
+					v-btn(color="success", @click="submit", :disabled="!valid") Сохранить
+					v-btn(color="info", @click="reset") Очистить форму
 </template>
 
 <script>
@@ -77,7 +129,6 @@ export default {
 			'Средняя Азия',
 			'Дальнее Зарубежье'
 		],
-		selectedCities: [],
 		countries: [
 			'Родная Россия',
 			'Ближнее зарубежье',
@@ -88,16 +139,18 @@ export default {
 			'За экватор и дальше',
 			'Кроме меня только пингвины'
 		],
-		selectedCountries: [],
-		months: [],
-		panel: [],
 		visa: [
 			'Без визы, пожалуйста',
 			'Есть шенген',
 			'Есть визы UK/USA'
 		],
+		valid: false,
+		selectedCities: [],
+		selectedCountries: [],
+		months: [],
+		panel: [],
 		selectedVisas: [],
-		slider: 45
+		slider: 499
 	}),
 
 	computed: {
@@ -131,7 +184,7 @@ export default {
 					this.selectedCities = []
 				} else {
 					this.selectedCities = this.cities.slice()
-					this.$children[0].blur()
+					this.$refs.selectedCities.blur()
 				}
 			})
 		},
@@ -141,7 +194,7 @@ export default {
 					this.selectedCountries = []
 				} else {
 					this.selectedCountries = this.countries.slice()
-					this.$children[1].blur()
+					this.$refs.selectedCountries.blur()
 				}
 			})
 		},
@@ -151,9 +204,17 @@ export default {
 					this.selectedVisas = []
 				} else {
 					this.selectedVisas = this.visa.slice()
-					this.$children[3].blur()
+					this.$refs.selectedVisas.blur()
 				}
 			})
+		},
+		submit () {
+			document.getElementById('radarform').submit()
+		},
+		reset () {
+			this.$refs.form.reset()
+			this.slider = ''
+			this.months.splice(0, this.months.length)
 		}
 	}
 }

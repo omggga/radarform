@@ -17,7 +17,3 @@ new Vue({
 	el: '#app',
 	render: h => h(App)
 })
-
-document.body.addEventListener('touchmove', function (e) {
-	e.preventDefault()
-})

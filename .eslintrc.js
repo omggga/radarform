@@ -14,6 +14,7 @@ module.exports = {
 		"no-tabs": 0,
 		"eol-last": 0,
 		"no-new": 0,
-		"vue/html-indent": 0
+		"vue/html-indent": 0,
+		"no-debugger": 0
 	}
 }
