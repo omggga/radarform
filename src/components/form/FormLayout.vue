@@ -1,9 +1,10 @@
 <template lang="pug">
-	v-form(id="radarform", ref="form", v-model="valid", action="https://getform.io/f/fda93c20-c692-429d-b0c7-2ed4f0626867")
+	v-form(id="radarform", ref="form", v-model="valid", action="https://getform.io/f/fda93c20-c692-429d-b0c7-2ed4f0626867", method="post")
 		v-layout.pl-4.pr-4(row, wrap, justify-center)
 			v-flex(xs12, sm6)
 				v-layout.select_from(justify-center)
 					v-select(ref="selectedCities",
+						track-by="cities",
 						v-model="selectedCities",
 						:items="cities",
 						label="Откуда отсюда?",
@@ -26,6 +27,7 @@
 			v-flex(xs12, sm6, :class="{'pl-4': $vuetify.breakpoint.smAndUp, 'pl-0': $vuetify.breakpoint.xsOnly}")
 				v-layout.select_from(justify-center)
 					v-select(ref="selectedCountries",
+						name="countries",
 						v-model="selectedCountries",
 						:items="countries",
 						label="А куда?",
@@ -50,6 +52,7 @@
 					v-flex.dates-comobobox(justify-center, xs12)
 						v-combobox(slot="activator",
 							v-model="months",
+							name="date",
 							multiple,
 							disabled,
 							hide-no-data,
@@ -59,6 +62,7 @@
 						v-date-picker(ref="months",
 							label="А когда?",
 							v-model="months",
+							name="months",
 							type="month",
 							multiple,
 							color="#01CAD1",
@@ -71,6 +75,7 @@
 				v-layout.select_from(justify-center)
 					v-select(ref="selectedVisas",
 						v-model="selectedVisas",
+						name="visa"
 						:items="visa",
 						label="А что с документами?",
 						multiple,
@@ -93,6 +98,7 @@
 					v-flex.xs9
 						v-slider(ref="slider",
 							v-model="slider",
+							name="price",
 							color="#01CAD1",
 							always-dirty,
 							height="5",
