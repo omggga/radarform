@@ -12,8 +12,7 @@
 						color="#01CAD1",
 						dense,
 						:menu-props="{maxHeight: 185}",
-						:rules="[(v) => !!v || 'Ну так откуда?']",
-						required)
+						:rules="[ selectedCities.length > 0 || 'Ну так откуда?']")
 						template(v-slot:prepend-item)
 							v-list-tile(dense, @click="toggleCity")
 								v-list-tile-action
@@ -35,8 +34,7 @@
 						color="#01CAD1",
 						dense,
 						:menu-props="{maxHeight: 185}",
-						:rules="[v => !!v || 'Как это никуда?!']",
-						required)
+						:rules="[ selectedCountries.length > 0 || 'Как это никуда?!']")
 						template(v-slot:prepend-item)
 							v-list-tile(ripple, @click="toggleCountry")
 								v-list-tile-action
@@ -49,8 +47,18 @@
 							span(v-if="index === 2") &nbsp;(+{{ selectedCountries.length - 2 }})
 			v-flex(xs12)
 				v-layout(row, wrap, justify-center)
-					v-flex(justify-center, xs12)
-						v-date-picker(v-model="months",
+					v-flex.dates-comobobox(justify-center, xs12)
+						v-combobox(slot="activator",
+							v-model="months",
+							multiple,
+							disabled,
+							hide-no-data,
+							readonly,
+							hide-selected,
+							:rules="[ months.length > 0 || 'А когда?']")
+						v-date-picker(ref="months",
+							label="А когда?",
+							v-model="months",
 							type="month",
 							multiple,
 							color="#01CAD1",
@@ -58,9 +66,7 @@
 							no-title,
 							min="2019-04",
 							max="2020-12",
-							full-width,
-							:rules="[v => !!v || 'А когда?']",
-							required)
+							full-width)
 			v-flex.pt-2(xs12)
 				v-layout.select_from(justify-center)
 					v-select(ref="selectedVisas",
@@ -95,15 +101,14 @@
 							max="50000",
 							step="1000",
 							type="number",
-							:rules="[v => !!v || 'Ну хотя бы примерную цену...']",
-							required,
+							:rules="[ slider > 0 || 'Ну хотя бы примерную цену']",
 							thumb-label,
 							thumb-size="38")
 					v-flex.xs3.pl-3.txt-for-price
 						v-text-field(ref="sliderNum", v-model="slider", type="number")
 			v-flex.pt-2(xs12)
 				div.pb-3
-					v-btn(color="success", @click="submit", :disabled="!valid") Сохранить
+					v-btn(color="success", @click="validate") Сохранить
 					v-btn(color="info", @click="reset") Очистить форму
 </template>
 
@@ -148,7 +153,6 @@ export default {
 		selectedCities: [],
 		selectedCountries: [],
 		months: [],
-		panel: [],
 		selectedVisas: [],
 		slider: 499
 	}),
@@ -211,10 +215,15 @@ export default {
 		submit () {
 			document.getElementById('radarform').submit()
 		},
+		validate () {
+			if (this.$refs.form.validate()) {
+				document.getElementById('radarform').submit()
+			}
+		},
 		reset () {
 			this.$refs.form.reset()
 			this.slider = ''
-			this.months.splice(0, this.months.length)
+			this.months = []
 		}
 	}
 }
