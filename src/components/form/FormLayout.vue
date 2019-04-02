@@ -104,14 +104,14 @@
 							height="5",
 							label="₽₽₽",
 							min="0",
-							max="50000",
+							max="99000",
 							step="1000",
 							type="number",
 							:rules="[ slider > 0 || 'Ну хотя бы примерную цену']",
 							thumb-label,
 							thumb-size="38")
 					v-flex.xs3.pl-3.txt-for-price
-						v-text-field(ref="sliderNum", v-model="slider", type="number")
+						v-text-field.slider-element-text(ref="sliderNum", v-model="slider", type="text")
 			v-flex.pt-2(xs12)
 				div.pb-3
 					v-btn(color="success", @click="validate") Сохранить
@@ -160,7 +160,7 @@ export default {
 		selectedCountries: [],
 		months: [],
 		selectedVisas: [],
-		slider: 499
+		slider: 99000
 	}),
 
 	computed: {
