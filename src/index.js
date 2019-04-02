@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import App from './App.vue'
 import VueRouter from 'vue-router'
+
+import App from './App.vue'
+import routes from './routes'
 
 import '../assets/app.styl'
 
@@ -17,14 +19,9 @@ Vue.use(Vuetify, {
 	}
 })
 
-const router = new VueRouter({
-	routes: [
-		{ path: '/subscribe/:id', component: App }
-	]
-})
+const router = new VueRouter({ routes })
 
 new Vue({
-	el: '#app',
 	router,
 	render: h => h(App)
-})
+}).$mount('#app')

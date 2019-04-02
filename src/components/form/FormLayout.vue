@@ -1,5 +1,5 @@
 <template lang="pug">
-	v-form(id="radarform", ref="form", v-model="valid", action="https://getform.io/f/fda93c20-c692-429d-b0c7-2ed4f0626867", method="post")
+	v-form(id="radarform", ref="form", v-model="valid", action="", method="post")
 		v-layout.pl-4.pr-4(row, wrap, justify-center)
 			v-flex(xs12, sm6)
 				v-layout.select_from(justify-center)
@@ -111,7 +111,7 @@
 							thumb-label,
 							thumb-size="38")
 					v-flex.xs3.pl-3.txt-for-price
-						v-text-field.slider-element-text(ref="sliderNum", v-model="slider", type="text")
+						v-text-field.slider-element-text(ref="sliderNum", v-model="slider", type="text", readonly)
 			v-flex.pt-2(xs12)
 				div.pb-3
 					v-btn(color="success", @click="validate") Сохранить
@@ -218,12 +218,30 @@ export default {
 				}
 			})
 		},
-		submit () {
-			document.getElementById('radarform').submit()
-		},
 		validate () {
 			if (this.$refs.form.validate()) {
-				document.getElementById('radarform').submit()
+				const opts = {
+					from: this.$refs.selectedCities.value,
+					to: this.$refs.selectedCountries.value,
+					dates: this.$refs.months.value,
+					visa: this.$refs.selectedVisas.value,
+					price: this.$refs.slider.value
+				}
+
+				const url = 'https://getform.io/f/fda93c20-c692-429d-b0c7-2ed4f0626867'
+
+				fetch(url, {
+					method: 'POST',
+					mode: 'cors',
+					body: JSON.stringify(opts)
+				})
+					.then(response => response.json())
+					.then((data) => {
+						this.$router.push({ name: 'complete', params: { res: data } })
+					})
+					.catch((error) => {
+						this.$router.push({ name: 'error', params: { error: error } })
+					})
 			}
 		},
 		reset () {
