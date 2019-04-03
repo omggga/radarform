@@ -187,6 +187,23 @@ export default {
 		}
 	},
 
+	async created () {
+		const url = 'http://localhost:3000/user/' + this.$route.params.id
+		fetch(url, {
+			method: 'GET',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+		}).then((data) => {
+			if (data && data.length > 0) {
+				console.log('User exists')
+			} else {
+				console.log('New user')
+			}
+		})
+	},
+
 	methods: {
 		toggleCity () {
 			this.$nextTick(() => {
@@ -220,7 +237,8 @@ export default {
 		},
 		validate () {
 			if (this.$refs.form.validate()) {
-				const opts = {
+				const data = {
+					key: 1,
 					from: this.$refs.selectedCities.value,
 					to: this.$refs.selectedCountries.value,
 					dates: this.$refs.months.value,
@@ -228,20 +246,16 @@ export default {
 					price: this.$refs.slider.value
 				}
 
-				const url = 'https://getform.io/f/fda93c20-c692-429d-b0c7-2ed4f0626867'
-
-				fetch(url, {
+				fetch('http://localhost:3000/save', {
 					method: 'POST',
-					mode: 'cors',
-					body: JSON.stringify(opts)
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				}).then((data) => {
+					console.log('data', data)
 				})
-					.then(response => response.json())
-					.then((data) => {
-						this.$router.push({ name: 'complete', params: { res: data } })
-					})
-					.catch((error) => {
-						this.$router.push({ name: 'error', params: { error: error } })
-					})
 			}
 		},
 		reset () {
