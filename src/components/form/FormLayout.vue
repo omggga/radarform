@@ -195,9 +195,27 @@ export default {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
+		}).then((response) => {
+			return response.json()
 		}).then((data) => {
-			if (data && data.length > 0) {
-				console.log('User exists')
+			if (data) {
+				console.log(data)
+				/*
+				Data example
+				[
+					{
+						date_added: "2019-04-03T06:08:11.033Z"
+						dates: "["2019-05","2019-08","2019-07"]"
+						place_from: "["Москва","Санкт-Петербург","Поволжье (Казань, Нижний, Самара, Уфа)","Урал (Екб, Челябинск, Пермь)","Сибирь (Новосиб, Омск, Иркутск, Красноярск)","Дальний Восток (Владивосток, Хабаровск)","Юг/Кавказ (Сочи, Краснодар, Грозный)","СНГ и Калининград","Средняя Азия","Дальнее Зарубежье"]"
+						place_to: "["Россия","Ближнее зарубежье","Европа","Азия","Северная Америка","Африка","За экватор и дальше","Кроме меня только пингвины"]"
+						pricelimit: "59000"
+						user_id: 1
+						userkey: "kdfDsdf45k2"
+						username: "test"
+						visa: "["Без визы, пожалуйста","Есть шенген","Есть визы UK/USA"]"
+					}
+				]
+				*/
 			} else {
 				console.log('New user')
 			}
