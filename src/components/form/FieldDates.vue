@@ -32,7 +32,7 @@ export default {
 	}),
 
 	computed: {
-		minDate (val) {
+		minDate () {
 			return this.formatDate(new Date())
 		},
 		maxDate () {

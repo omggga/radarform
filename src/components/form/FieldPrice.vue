@@ -24,6 +24,15 @@
 export default {
 	data: () => ({
 		slider: 99000
-	})
+	}),
+
+	watch: {
+		slider: function (value) {
+			if (isNaN(value)) {
+				this.slider = 99000
+				this.sliderNum = 99000
+			}
+		}
+	}
 }
 </script>
