@@ -27,6 +27,13 @@
 
 <script>
 export default {
+	props: {
+		usermonths: {
+			validator: value => typeof value === 'object',
+			default: () => []
+		}
+	},
+
 	data: () => ({
 		months: []
 	}),
@@ -41,26 +48,13 @@ export default {
 	},
 
 	async created () {
-		const tmpDataArray = [
-			{
-				dates: ['2019-01', '2019-08', '2019-07']
-			}
-		]
-		/*
-		this.$options._componentTag = 'field-dates', rename all components with correct db name
-		const url = 'http://localhost:3000/get/' + this.$options._componentTag
-		const selectData = await fetch(url)
-		const result = await selectData.json()
-		this.months = result[0].dates
-		*/
-		const arrOfDates = tmpDataArray[0].dates
-		let i = arrOfDates.length
+		let i = this.usermonths.length
 		while (i--) {
-			if (new Date(arrOfDates[i]) < new Date()) {
-				arrOfDates.splice(i, 1)
+			if (new Date(this.usermonths[i]) < new Date()) {
+				this.usermonths.splice(i, 1)
 			}
 		}
-		this.months = arrOfDates
+		this.months = this.usermonths
 	},
 
 	methods: {
