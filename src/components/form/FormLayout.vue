@@ -29,7 +29,7 @@ export default {
 
 	data: () => ({
 		valid: false,
-		slider: 99000
+		slider: 990000
 	}),
 
 	async created () {

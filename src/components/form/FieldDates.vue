@@ -20,8 +20,8 @@
 					color="#01CAD1",
 					locale="ru",
 					no-title,
-					min="2019-04",
-					max="2020-12",
+					:min="minDate",
+					:max="maxDate",
 					full-width)
 </template>
 
@@ -31,10 +31,19 @@ export default {
 		months: []
 	}),
 
+	computed: {
+		minDate (val) {
+			return this.formatDate(new Date())
+		},
+		maxDate () {
+			return this.formatDate(new Date(new Date().setFullYear(new Date().getFullYear() + 1)))
+		}
+	},
+
 	async created () {
 		const tmpDataArray = [
 			{
-				dates: ['2019-05', '2019-08', '2019-07']
+				dates: ['2019-01', '2019-08', '2019-07']
 			}
 		]
 		/*
@@ -44,7 +53,23 @@ export default {
 		const result = await selectData.json()
 		this.months = result[0].dates
 		*/
-		this.months = tmpDataArray[0].dates
+		const arrOfDates = tmpDataArray[0].dates
+		let i = arrOfDates.length
+		while (i--) {
+			if (new Date(arrOfDates[i]) < new Date()) {
+				arrOfDates.splice(i, 1)
+			}
+		}
+		this.months = arrOfDates
+	},
+
+	methods: {
+		formatDate (date) {
+			const year = date.getFullYear()
+			let month = date.getMonth() + 1
+			if (month.length < 2) month = `0${month}`
+			return [year, month].join('-')
+		}
 	}
 }
 </script>
