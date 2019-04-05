@@ -25,6 +25,13 @@
 
 <script>
 export default {
+	props: {
+		userdata: {
+			validator: value => typeof value === 'object',
+			default: () => []
+		}
+	},
+
 	data: () => ({
 		visa: [],
 		selectedVisas: []
@@ -58,6 +65,7 @@ export default {
 		this.visa = result[0].visa
 		*/
 		this.visa = tmpDataArray[0].visa
+		this.selectedVisas = this.userdata
 	},
 
 	methods: {

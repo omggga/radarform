@@ -26,6 +26,13 @@
 
 <script>
 export default {
+	props: {
+		userdata: {
+			validator: value => typeof value === 'object',
+			default: () => []
+		}
+	},
+
 	data: () => ({
 		countries: [],
 		selectedCountries: []
@@ -64,6 +71,7 @@ export default {
 		this.countries = result[0].place_to
 		*/
 		this.countries = tmpDataArray[0].place_to
+		this.selectedCountries = this.userdata
 	},
 
 	methods: {

@@ -28,7 +28,7 @@
 <script>
 export default {
 	props: {
-		usermonths: {
+		userdata: {
 			validator: value => typeof value === 'object',
 			default: () => []
 		}
@@ -48,13 +48,13 @@ export default {
 	},
 
 	async created () {
-		let i = this.usermonths.length
+		let i = this.userdata.length
 		while (i--) {
-			if (new Date(this.usermonths[i]) < new Date()) {
-				this.usermonths.splice(i, 1)
+			if (new Date(this.userdata[i]) < new Date()) {
+				this.userdata.splice(i, 1)
 			}
 		}
-		this.months = this.usermonths
+		this.months = this.userdata
 	},
 
 	methods: {

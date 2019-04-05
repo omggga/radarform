@@ -1,11 +1,11 @@
 <template lang="pug">
 	v-form(id="radarform", ref="form", v-model="valid", action="", method="post")
 		v-layout.pl-4.pr-4(row, wrap, justify-center)
-			field-from
-			field-to
-			field-dates(:usermonths="selectedMonths")
-			field-visa
-			field-price
+			field-from(:userdata="userFrom")
+			field-to(:userdata="userTo")
+			field-dates(:userdata="userMonths")
+			field-visa(:userdata="userVisa")
+			field-price(:userdata="userprice")
 			v-flex.pt-2(xs12)
 				div.pb-3
 					v-btn(color="success", @click="validate") Сохранить
@@ -29,7 +29,11 @@ export default {
 
 	data: () => ({
 		valid: false,
-		selectedMonths: []
+		userFrom: [],
+		userTo: [],
+		userMonths: [],
+		userVisa: [],
+		userprice: 99000
 	}),
 
 	async created () {
@@ -51,7 +55,11 @@ export default {
 			}
 		})
 		*/
-		this.selectedMonths = ['2019-07', '2019-05', '2019-01']
+		this.userFrom = ['Москва', 'Санкт-Петербург']
+		this.userTo = ['Европа', 'Азия']
+		this.userMonths = ['2019-07', '2019-05', '2019-01']
+		this.userVisa = ['Есть шенген']
+		this.userprice = 15000
 	},
 
 	methods: {

@@ -2,7 +2,6 @@
 	v-flex(xs12, sm6)
 		v-layout.select_from(justify-center)
 			v-select(ref="selectedCities",
-				track-by="cities",
 				v-model="selectedCities",
 				:items="cities",
 				label="Откуда отсюда?",
@@ -26,6 +25,13 @@
 
 <script>
 export default {
+	props: {
+		userdata: {
+			validator: value => typeof value === 'object',
+			default: () => []
+		}
+	},
+
 	data: () => ({
 		cities: [],
 		selectedCities: []
@@ -66,6 +72,7 @@ export default {
 		this.cities = result[0].place_from
 		*/
 		this.cities = tmpDataArray[0].place_from
+		this.selectedCities = this.userdata
 	},
 
 	methods: {

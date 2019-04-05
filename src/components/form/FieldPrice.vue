@@ -22,6 +22,13 @@
 
 <script>
 export default {
+	props: {
+		userdata: {
+			validator: value => typeof value === 'number',
+			default: () => 99000
+		}
+	},
+
 	data: () => ({
 		slider: 99000
 	}),
@@ -33,6 +40,11 @@ export default {
 				this.sliderNum = 99000
 			}
 		}
+	},
+
+	async created () {
+		this.slider = this.userdata
+		this.sliderNum = this.userdata
 	}
 }
 </script>
