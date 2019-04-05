@@ -1,14 +1,29 @@
 <template lang="pug">
-	div.pb-3
-		v-slider(v-model="slider", color="#01CAD1", always-dirty, height="5", label="Цена", min="0", max="50000", step="1000", thumb-size="42", thumb-label)
+	v-flex.pt-2(xs12)
+		v-layout(row, wrap)
+			v-flex.xs9
+				v-slider(ref="slider",
+					v-model="slider",
+					name="price",
+					color="#01CAD1",
+					always-dirty,
+					height="5",
+					label="₽₽₽",
+					min="0",
+					max="99000",
+					step="1000",
+					type="number",
+					:rules="[ slider > 0 || 'Ну хотя бы примерную цену']",
+					thumb-label,
+					thumb-size="38")
+			v-flex.xs3.pl-3.txt-for-price
+				v-text-field.slider-element-text(ref="sliderNum", v-model="slider", type="text", readonly)
 </template>
 
 <script>
 export default {
-	data () {
-		return {
-			slider: 45
-		}
-	}
+	data: () => ({
+		slider: 99000
+	})
 }
 </script>
