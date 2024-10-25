@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/omggga/radarform#readme",
   "dependencies": {
-    "vue": "^2.6.9",
+    "vue": "^3.0.0",
     "vue-router": "^3.0.2",
     "vuetify": "^1.5.7",
     "vuetify-loader": "^1.2.1"
